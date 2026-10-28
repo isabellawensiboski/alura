@@ -70,14 +70,24 @@
                   display: flex;
             }
 img {
-      width: 80px;
-      height: 80px;
+      width: 110px;
+      height: 110px;
 }
             
             }
 .artigo-autor {
       font-weight: bold;
 }
+       .btn-tema-escuro {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 32px;
+      padding: 12px;
+      background-color: var(--cor-primaria);
+      border radius: 50%;
+    }
+         
             
       </style>
 </head>
@@ -107,18 +117,39 @@ img {
                   <button>💜 <span>0</span></button>
             </div>
                   </article>
+            <button class="btn-tema-escuro">🌗</button>
       </main>
 </body>
-      <script>
-         const botao = document.querySelector("button");
-            botao.addEventListener("click", botaoClicado);
-            function botaoClicado(){
-                  console.log("fui clicado");
-                  let texto = botao.querySelector("span");
-                  texto.textContent++;
-            }
-            
-                        
-            
-      </script>
+      <script src="script.js"></script>
+  const botoes = document.querySelectorAll("button");
+
+  botoes.forEach(function (botao) {
+    let curtiu = false;
+    botao.addEventListener("click", botaoClicado);
+     function botaoClicado() {
+    console.log("fui clicado");
+    let texto = botao.querySelector("span");
+       if (curtiu === false){
+          texto.textContent++;
+         curtiu = true;
+       } else{
+         texto.textContent--;
+         curtiu = false;
+       }
+     }
+  })
+
+  const btnTemaEscuro = document.querySelector(".btn-tema-escuro");
+
+  btnTemaEscuro.addEventListener("click", mudaTema);
+
+  function mudaTema() {
+      const corpoPagina = document.body;
+      if (corpoPagina.classList.contains("tema-escuro")){
+          corpoPagina.classList.remove("tema-escuro");
+      } else {
+          corpoPagina.classList.add("tema-escuro");
+      }
+  }
+  </script>
 </html>
